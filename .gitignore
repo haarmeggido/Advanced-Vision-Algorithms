@@ -3,6 +3,8 @@
 05/mats/
 06/mats/
 
+08/KITTI
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
