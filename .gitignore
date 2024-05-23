@@ -7,6 +7,8 @@
 06/mats/
 
 08/KITTI
+10/mats
+10/yolo*weights
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
