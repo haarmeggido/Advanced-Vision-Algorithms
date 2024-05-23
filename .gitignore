@@ -1,13 +1,8 @@
 # my own
-01/mats
-02/mats
-03/mats
 07/sequences/
-05/mats/
-06/mats/
+*/mats/
 
 08/KITTI
-10/mats
 10/yolo*weights
 
 *.avi
