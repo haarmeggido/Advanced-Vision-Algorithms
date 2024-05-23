@@ -10,6 +10,8 @@
 10/mats
 10/yolo*weights
 
+*.avi
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -77,18 +77,21 @@ FUSION = "EARLY"
 
 ############# TODO0 ###############
 # Set the path
-test_rgb = "mats/test_rgb"  # Path to the test_rgb folder
-test_thermal = "mats/test_thermal"  # Path to the test_thermal folder
+test_rgb = "10/mats/test_rgb"  # Path to the test_rgb folder
+test_thermal = "10/mats/test_thermal"  # Path to the test_thermal folder
+
+#frames to put a video
+frames = []
 ###################################
 
 net_fus = None
 net_therm = None
 net_rgb = None
 if FUSION == "EARLY":
-    net_fus = cv2.dnn.readNet('yolov3_training_last_f.weights', 'yolov3_testing_f.cfg')
+    net_fus = cv2.dnn.readNet('10/yolov3_training_last_f.weights', '10/yolov3_testing_f.cfg')
 if FUSION == "LATE":
-    net_therm = cv2.dnn.readNet('yolov3_training_last_t.weights', 'yolov3_testing_t.cfg')
-    net_rgb = cv2.dnn.readNet('yolov3_training_last_c.weights', 'yolov3_testing_c.cfg')
+    net_therm = cv2.dnn.readNet('10/yolov3_training_last_t.weights', '10/yolov3_testing_t.cfg')
+    net_rgb = cv2.dnn.readNet('10/yolov3_training_last_c.weights', '10/yolov3_testing_c.cfg')
 
 for i in range(200, 300):  # you can change the range up to 518
     path_rgb = join(test_rgb, f"img{i}.png")
@@ -182,5 +185,16 @@ for i in range(200, 300):  # you can change the range up to 518
     for box in out_boxes:
         x, y, w, h = box
         cv2.rectangle(out_img, (x, y), (x+w, y+h), (255, 255, 0), 2)
+    
+    frames.append(out_img)
     cv2.imshow('Image', out_img)
     cv2.waitKey(10)
+
+# Save the video
+height, width, layers = frames[0].shape
+size = (width, height)
+out = cv2.VideoWriter('10/output.avi', cv2.VideoWriter_fourcc(*'DIVX'), 15, size)
+for i in range(len(frames)):
+    out.write(frames[i])
+out.release()
+cv2.destroyAllWindows()
