@@ -11,7 +11,7 @@ def event_frame(event_x, event_y, event_polarity, image_shape):
     
     return event_image
 
-with open("events.txt", "r") as file:
+with open("13/mats/events.txt", "r") as file:
     timestamps = []
     x_coordinates = []
     y_coordinates = []

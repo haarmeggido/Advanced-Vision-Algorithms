@@ -48,7 +48,7 @@ def analyze_events(timestamps, xs, ys, polarities):
 
     return num_events, first_timestamp, last_timestamp, max_x, min_x, max_y, min_y, num_positive_events, num_negative_events
 
-def visualize_events(xs, ys, timestamps, polarities):
+def visualize_events(xs, ys, timestamps, polarities, save = True):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.scatter(xs, ys, timestamps, c=polarities, cmap='coolwarm')
@@ -56,10 +56,12 @@ def visualize_events(xs, ys, timestamps, polarities):
     ax.set_ylabel('Y Coordinate')
     ax.set_zlabel('Timestamp')
     ax.set_title('Event Data Visualization')
+    ax.view_init(elev=-90, azim=-90)
     plt.show()
 
+
 def main():
-    events_file_path = "events.txt"
+    events_file_path = "13/mats/events.txt"
     events = read_events_file(events_file_path)
     filtered_events = filter_events(events)
     timestamps, xs, ys, polarities = split_events(filtered_events)

@@ -10,7 +10,7 @@ def read_events(file_path, num_events=None):
             events.append((timestamp, x, y, polarity))
     return events
 
-def visualize_events(xs, ys, timestamps, polarities, title):
+def visualize_events(xs, ys, timestamps, polarities, title, save = False):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.scatter(xs, ys, timestamps, c=polarities, cmap='coolwarm')
@@ -19,15 +19,20 @@ def visualize_events(xs, ys, timestamps, polarities, title):
     ax.set_zlabel('Timestamp')
     ax.set_title(title)
     ax.view_init(elev=-90, azim=-90)
+    plt.show()
 
-events_1 = read_events('events.txt', num_events=8000)
+    if save:
+        plt.savefig(title + '.png')
+
+events_1 = read_events('13/mats/events.txt', num_events=8000)
 timestamps_1 = [event[0] for event in events_1]
 xs_1 = [event[1] for event in events_1]
 ys_1 = [event[2] for event in events_1]
 polarities_1 = [event[3] for event in events_1]
 visualize_events(xs_1, ys_1, timestamps_1, polarities_1, 'First 8000 Events')
 
-events_2 = read_events('events.txt')
+print('Number of events:', len(events_1))
+events_2 = read_events('13/mats/events.txt')
 filtered_events_2 = [event for event in events_2 if 0.5 <= event[0] <= 1]
 timestamps_2 = [event[0] for event in filtered_events_2]
 xs_2 = [event[1] for event in filtered_events_2]
