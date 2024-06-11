@@ -47,7 +47,7 @@ while True:
 
 
 
-    cap = cv2.VideoCapture('video_1.mp4')
+    cap = cv2.VideoCapture('mats/video_2.mp4')
     while cap.isOpened():
         h_min = cv2.getTrackbarPos("Hue Min", "TrackBars")
         h_max = cv2.getTrackbarPos("Hue Max", "TrackBars")
@@ -107,3 +107,8 @@ while True:
         cv2.imshow("Labeled", labeled)
         if cv2.waitKey(0) & 0xFF == ord('q'):
             break
+
+    cap.release()
+
+
+cv2.destroyAllWindows()
